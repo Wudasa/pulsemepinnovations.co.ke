@@ -1,0 +1,790 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #0f5b59;
+  --secondary: #ff6600;
+  --shadow: 0 4px 10px rgba(0,0,0,0.1);
+  --text: #222;
+  --light-bg: #f9fafb;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background: var(--primary);
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.logo img { height: 100px; width: auto; display: block;}
+
+/* Desktop nav default */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+/* Hamburger (hidden on desktop) */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  z-index: 11; /* keep it above dropdown */
+}
+.hamburger div {
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  margin: 5px 0;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+/* Mobile behavior */
+@media (max-width: 768px) {
+  .nav-links  {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--primary);
+    flex-direction: column;
+    width: 220px;
+    overflow: hidden;
+
+    /* hidden by default */
+    max-height: 0;
+    opacity: 0;
+    transform-origin: top;
+    transition: max-height 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+    border-bottom-left-radius: 8px;
+  }
+
+  .nav-links  a {
+    padding: 0.75rem 1rem;
+    color: #fff;
+    display: block;
+  }
+
+  /* visible state (slide down) */
+  .nav-links.active {
+    max-height: 500px; /* enough for a few links */
+    opacity: 1;
+  }
+
+  /* show hamburger on mobile */
+  .hamburger {
+    display: block;
+    margin-left: 1rem;
+  }
+}
+
+/* Hamburger -> X animation when open */
+.hamburger.open div:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.open div:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open div:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Optional: focus visible for keyboard accessibility */
+.hamburger:focus { outline: 2px solid rgba(255,255,255,0.25); outline-offset: 4px; }
+ 
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+              url('images/Engineer\ holding.jpg') center/cover fixed no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 8rem 2rem;
+}
+.hero-text {
+  background: rgba(0,0,0,0.5);
+  display: inline-block;
+  padding: 2rem;
+  border-radius: 10px;
+}
+.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+/* About Section */
+.about-section {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.about-image {
+  flex: 1;
+  position: relative;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+
+}
+
+.about-text {
+  flex: 1;
+  text-align: left;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-text {
+    text-align: center;
+  }
+}
+
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--secondary);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background: #e65c00;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+/* Section Styling */
+section { padding: 4rem 2rem; max-width: 1000px; margin: auto; }
+h2 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary); }
+
+/* Existing styles... keep the rest as is */
+/* About Flow (L-shaped zigzag) */
+.about-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+}
+
+.about-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.about-row:hover {
+  transform: translateY(-6px);
+  filter: brightness(1.05);
+}
+
+.about-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.about-box.text {
+  flex-direction: column;
+}
+
+.about-box.text h2 {
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+}
+
+.about-box.text p {
+  line-height: 1.6;
+}
+
+.about-box.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Section-specific colors */
+.mission .text { background: #e0f7f6; color: #0f5b59; }
+.vision .text { background: #ff6600; color: #fff; }
+.values .text { background: #e0f7f6; color: #0f5b59; }
+
+/* Responsive stacking */
+@media (max-width: 900px) {
+  .about-row {
+    grid-template-columns: 1fr;
+  }
+  .about-box.image img {
+    height: 250px;
+  }
+}
+/* Services Section */
+.services-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.services-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--primary);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Service Article Layout */
+.service-article {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.service-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.service-article h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.service-article p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+.service-article h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--secondary);
+}
+
+.service-article ul {
+  padding-left: 1.2rem;
+}
+
+.service-article ul li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.service-overlay ul {
+  max-height: 200px;
+  overflow-y: auto; /* if the list is long, it scrolls */
+}
+
+.service-img {
+  width: 100%;
+  height: 250px; /* fixed height for all service cards */
+  overflow: hidden; /* crop overflow instead of stretching */
+  border-radius: 12px 12px 0 0;
+}
+
+.service-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* keeps proportions and fills box */
+  display: block;
+}
+.service-article img {
+  width: 100%;              /* fill the container’s width */
+  max-height: 400px;        /* cap height so it’s not too tall */
+  object-fit: cover;        /* crop instead of stretching */
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+  display: block;
+}
+/* Background + Overlay */
+.why-choose-us {
+  position: relative;
+  background: url('images/Stisticks.jpg') no-repeat center center/cover;
+  color: #fff;
+  padding: 5rem 2rem;
+}
+
+.why-choose-us .overlay {
+  background: rgba(0, 128, 128, 0.85); /* teal overlay */
+  padding: 5rem 2rem;
+}
+
+.why-choose-us h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.why-choose-us .tagline {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: #e0f7f7;
+}
+
+/* Differentiators Grid */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.why-card {
+  background: #fff;
+  color: #333;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.why-card:hover {
+  transform: translateY(-5px);
+}
+
+.why-card h3 {
+  margin-bottom: 0.5rem;
+  color: teal;
+}
+
+/* Stats Circles */
+.stats-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 40px 20px;
+}
+
+.stats-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.stats-header h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.stats-header p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    padding: 3rem 1rem;
+}
+
+.stat-circle {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    transition: transform 0.3s ease;
+}
+
+.stat-circle:hover {
+    transform: scale(1.05);
+}
+
+.stat-circle svg {
+    width: 150px;
+    height: 150px;
+    transform: rotate(-90deg);
+}
+
+.stat-circle circle {
+    fill: none;
+    stroke-width: 10;
+    r: 68;
+    cx: 75;
+    cy: 75;
+}
+
+.stat-circle .bg {
+    stroke: #e0e0e0;
+}
+
+.stat-circle .progress {
+    stroke-dasharray: 427;
+    stroke-dashoffset: 427;
+    transition: stroke-dashoffset 1.5s ease;
+    stroke-linecap: round;
+}
+
+/* Different colors for each stat */
+.stat-circle:nth-child(1) .progress {
+    stroke: #4CAF50; /* Green for projects */
+}
+
+.stat-circle:nth-child(1) .stat-content span,
+.stat-circle:nth-child(1) .stat-content small {
+    color: #4CAF50;
+}
+
+.stat-circle:nth-child(2) .progress {
+    stroke: #2196F3; /* Blue for on-time delivery */
+}
+
+.stat-circle:nth-child(2) .stat-content span,
+.stat-circle:nth-child(2) .stat-content small {
+    color: #2196F3;
+}
+
+.stat-circle:nth-child(3) .progress {
+    stroke: #FF9800; /* Orange for client savings */
+}
+
+.stat-circle:nth-child(3) .stat-content span,
+.stat-circle:nth-child(3) .stat-content small {
+    color: #FF9800;
+}
+
+.stat-circle:nth-child(4) .progress {
+    stroke: #9C27B0; /* Purple for experience */
+}
+
+.stat-circle:nth-child(4) .stat-content span,
+.stat-circle:nth-child(4) .stat-content small {
+    color: #9C27B0;
+}
+
+.stat-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.stat-content span {
+    font-size: 2rem;
+    font-weight: bold;
+    display: block;
+    line-height: 1;
+}
+
+.stat-content small {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.stat-content p {
+    font-size: 0.85rem;
+    color: #fffefe;
+    margin-top: 8px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/* Animation pulse effect */
+.stat-circle.animate {
+    animation: pulse 0.6s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .stats {
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+
+    .stat-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .stat-circle svg {
+        width: 120px;
+        height: 120px;
+    }
+
+    .stat-circle circle {
+        r: 50;
+        cx: 60;
+        cy: 60;
+    }
+
+    .stat-circle .progress {
+        stroke-dasharray: 314; /* 2 * PI * 50 */
+        stroke-dashoffset: 314;
+    }
+
+    .stat-content span {
+        font-size: 1.5rem;
+    }
+
+    .stat-content small {
+        font-size: 0.9rem;
+    }
+
+    .stat-content p {
+        font-size: 0.75rem;
+    }
+
+    .stats-header h2 {
+        font-size: 2rem;
+    }
+
+    .stats-header p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats {
+        gap: 1.5rem;
+    }
+
+    .stat-circle {
+        width: 100px;
+        height: 100px;
+    }
+
+    .stat-circle svg {
+        width: 100px;
+        height: 100px;
+    }
+
+    .stat-circle circle {
+        r: 40;
+        cx: 50;
+        cy: 50;
+        stroke-width: 8;
+    }
+
+    .stat-circle .progress {
+        stroke-dasharray: 251; /* 2 * PI * 40 */
+        stroke-dashoffset: 251;
+    }
+
+    .stat-content span {
+        font-size: 1.2rem;
+    }
+
+    .stat-content small {
+        font-size: 0.8rem;
+    }
+
+    .stat-content p {
+        font-size: 0.7rem;
+    }
+}
+/* Projects Section */
+.projects {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.projects h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.projects p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Project Card */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.project-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Overlay */
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 128, 128, 0.85); /* teal overlay */
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  transition: opacity 0.4s ease;
+}
+
+.project-overlay h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.project-overlay a {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: #fff;
+  color: teal;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.project-overlay a:hover {
+  background: teal;
+  color: #fff;
+}
+
+/* Hover Effects */
+.project-card:hover img {
+  transform: scale(1.1);
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+/* Clients Section */
+.clients {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #fff;
+}
+
+.clients h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.clients p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Logo Grid */
+.clients-logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.client-logo img {
+  max-width: 120px;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.client-logo img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.1);
+}
